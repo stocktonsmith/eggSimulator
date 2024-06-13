@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bg86gbeasrcn6"]
+
+[ext_resource type="Texture2D" uid="uid://c5207gh650gwu" path="res://assets/GoalFlag.png" id="1_dsc7x"]
+[ext_resource type="Script" path="res://goal_scene.gd" id="1_uyhkj"]
+[ext_resource type="AudioStream" uid="uid://c8grpso17k35b" path="res://assets/sounds/ReachedFlag.mp3" id="2_2oqwn"]
+[ext_resource type="Texture2D" uid="uid://u024hctx3vy" path="res://assets/Lighting/YellowStarLight.png" id="4_s0lr0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_evexg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dsc7x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yoi4y"]
+size = Vector2(22, 177)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyg2v"]
+size = Vector2(256, 64)
+
+[node name="GoalScene" type="Node2D"]
+script = ExtResource("1_uyhkj")
+
+[node name="ReachedFlag" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2oqwn")
+volume_db = -5.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_evexg")
+
+[node name="GoalFlagArea" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="GoalFlagHitbox" type="CollisionShape2D" parent="AnimatedSprite2D/GoalFlagArea"]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_yoi4y")
+
+[node name="PlatformBody" type="StaticBody2D" parent="AnimatedSprite2D"]
+
+[node name="PlatformHitbox" type="CollisionShape2D" parent="AnimatedSprite2D/PlatformBody"]
+position = Vector2(0, 94)
+shape = SubResource("RectangleShape2D_oyg2v")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 40)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_s0lr0")
+
+[connection signal="body_entered" from="AnimatedSprite2D/GoalFlagArea" to="." method="_on_goal_flag_area_body_entered"]

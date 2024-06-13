@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbl11s0126kp5"]
+
+[ext_resource type="Script" path="res://speed_text.gd" id="1_3xgdv"]
+[ext_resource type="Script" path="res://canvas_scene.gd" id="1_wnhjr"]
+[ext_resource type="Texture2D" uid="uid://d1x3dksxokk65" path="res://assets/CornSign.png" id="2_8mogl"]
+[ext_resource type="Script" path="res://corn_text.gd" id="3_bcg7s"]
+[ext_resource type="Script" path="res://time_text.gd" id="5_y0upu"]
+[ext_resource type="AudioStream" uid="uid://kmhvhof6ujma" path="res://assets/sounds/lastTenSeconds.mp3" id="6_k4vl2"]
+[ext_resource type="AudioStream" uid="uid://dsb44867mlpc5" path="res://assets/sounds/TimeOut.mp3" id="7_kb750"]
+[ext_resource type="AudioStream" uid="uid://bsy5och4yryis" path="res://assets/sounds/TimerNormal.mp3" id="8_6s1xf"]
+
+[node name="CanvasScene" type="Node"]
+script = ExtResource("1_wnhjr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["CANVAS_LAYER"]]
+
+[node name="SpeedSign" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(155, 75)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_8mogl")
+
+[node name="SpeedText" type="Label" parent="CanvasLayer/SpeedSign"]
+auto_translate_mode = 1
+offset_left = -212.0
+offset_top = -40.0
+offset_right = 267.0
+offset_bottom = 59.0
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0, 0.87451, 0.0666667, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 58
+text = "Speed: 0 cm/s"
+script = ExtResource("1_3xgdv")
+
+[node name="CornSign" type="Sprite2D" parent="CanvasLayer" groups=["CORN_SIGN"]]
+position = Vector2(981, 73)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_8mogl")
+
+[node name="CornText" type="Label" parent="CanvasLayer/CornSign"]
+auto_translate_mode = 1
+offset_left = -216.0
+offset_top = -46.0
+offset_right = 179.0
+offset_bottom = 53.0
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 0.662745, 0.0666667, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Corn: 0 / 10"
+script = ExtResource("3_bcg7s")
+
+[node name="TimeSign" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(570, 75)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_8mogl")
+
+[node name="TimeText" type="Label" parent="CanvasLayer/TimeSign"]
+auto_translate_mode = 1
+offset_left = -212.0
+offset_top = -40.0
+offset_right = 267.0
+offset_bottom = 59.0
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 0.87451, 0.0666667, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "TIME: 60:00"
+script = ExtResource("5_y0upu")
+
+[node name="LastTenSeconds" type="AudioStreamPlayer" parent="CanvasLayer/TimeSign"]
+stream = ExtResource("6_k4vl2")
+
+[node name="TimeOut" type="AudioStreamPlayer" parent="CanvasLayer/TimeSign"]
+stream = ExtResource("7_kb750")
+
+[node name="TimerNormal" type="AudioStreamPlayer" parent="CanvasLayer/TimeSign"]
+stream = ExtResource("8_6s1xf")

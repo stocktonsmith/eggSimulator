@@ -1,0 +1,335 @@
+[gd_scene load_steps=41 format=3 uid="uid://nf55d6568n72"]
+
+[ext_resource type="PackedScene" uid="uid://bbl11s0126kp5" path="res://CanvasScene.tscn" id="1_1y0fx"]
+[ext_resource type="Texture2D" uid="uid://bwg4gwr6i8ubt" path="res://assets/eggSprites/eggBasic.png" id="1_hry4h"]
+[ext_resource type="Texture2D" uid="uid://bly7w8fqgv15n" path="res://assets/backdrops/kitchenBackdrop.png" id="1_hy3yk"]
+[ext_resource type="Texture2D" uid="uid://u024hctx3vy" path="res://assets/Lighting/YellowStarLight.png" id="1_k3045"]
+[ext_resource type="Script" path="res://egg.gd" id="2_vbgqm"]
+[ext_resource type="AudioStream" uid="uid://b0hqgghfffm8j" path="res://assets/music/kitchenMusic.mp3" id="3_8ugbg"]
+[ext_resource type="Script" path="res://egg_physics_body.gd" id="3_v8oti"]
+[ext_resource type="AudioStream" uid="uid://e62pgf5i2erh" path="res://assets/sounds/eggCrack.mp3" id="5_k8tir"]
+[ext_resource type="AudioStream" uid="uid://cjfh8vjfaqw4j" path="res://assets/sounds/eggPop.mp3" id="6_35xuo"]
+[ext_resource type="AudioStream" uid="uid://bxgu8gianyvf2" path="res://assets/sounds/eggCharge.mp3" id="7_n5ye8"]
+[ext_resource type="Texture2D" uid="uid://c7lrjahraexli" path="res://assets/EggArrow.png" id="8_gqw7i"]
+[ext_resource type="AudioStream" uid="uid://b0an8iw0hmib" path="res://assets/sounds/eggBounce.mp3" id="8_n478g"]
+[ext_resource type="Script" path="res://egg_arrow.gd" id="9_68auh"]
+[ext_resource type="AudioStream" uid="uid://c15ai874q06nj" path="res://assets/sounds/FireCharge.mp3" id="10_553al"]
+[ext_resource type="AudioStream" uid="uid://claagupybipjv" path="res://assets/sounds/SpeedBoost.mp3" id="10_vaysc"]
+[ext_resource type="Texture2D" uid="uid://mh5eny1h0j06" path="res://assets/FireChargeSheet.png" id="13_mf3tx"]
+[ext_resource type="Texture2D" uid="uid://5x5rvegbxluo" path="res://assets/AimCircle.png" id="15_4qkh1"]
+[ext_resource type="Texture2D" uid="uid://b12rh4xfuhgb2" path="res://assets/obstacleSprites/fridge.png" id="15_vjrkt"]
+[ext_resource type="PackedScene" uid="uid://bg86gbeasrcn6" path="res://GoalScene.tscn" id="16_ou4xa"]
+[ext_resource type="Texture2D" uid="uid://dvk6ynue26vt1" path="res://assets/obstacleSprites/table.png" id="17_t26rh"]
+[ext_resource type="Script" path="res://fork_box.gd" id="19_vjkq4"]
+[ext_resource type="Texture2D" uid="uid://bj4tpwjya6xal" path="res://assets/SpinningFork.png" id="20_kh452"]
+[ext_resource type="PackedScene" uid="uid://dmrqepsx07omq" path="res://CornScene.tscn" id="21_2p4nf"]
+[ext_resource type="Texture2D" uid="uid://bm8s3xb56adct" path="res://assets/obstacleSprites/cupboardWhite.png" id="21_grjow"]
+[ext_resource type="PackedScene" uid="uid://doekfa3mibbsh" path="res://SpeedBoost.tscn" id="25_5fhdx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1byc"]
+atlas = ExtResource("8_gqw7i")
+region = Rect2(0, 0, 46, 141)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7i32j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1byc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_svnrw"]
+friction = 0.8
+bounce = 0.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ca1vh"]
+radius = 31.0161
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcbqx"]
+atlas = ExtResource("1_hry4h")
+region = Rect2(0, 0, 56, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_77fsr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcbqx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y03s"]
+atlas = ExtResource("13_mf3tx")
+region = Rect2(0, 0, 170, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq21v"]
+atlas = ExtResource("13_mf3tx")
+region = Rect2(170, 0, 170, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_un5xl"]
+atlas = ExtResource("13_mf3tx")
+region = Rect2(340, 0, 170, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdlxf"]
+atlas = ExtResource("13_mf3tx")
+region = Rect2(510, 0, 170, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e6ati"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y03s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq21v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_un5xl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdlxf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4o1e7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_4qkh1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8ud8"]
+size = Vector2(510, 1132)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ncuws"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31prq"]
+size = Vector2(496, 399)
+
+[node name="Kitchen 1" type="Node2D"]
+
+[node name="LevelLighting" type="CanvasModulate" parent="."]
+color = Color(0.93845, 0.93845, 0.93845, 1)
+
+[node name="CeilingLight" type="PointLight2D" parent="LevelLighting"]
+position = Vector2(500, 0)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("1_k3045")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="KitchenBackdrop" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 0.921569, 1, 1)
+z_index = -10
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("1_hy3yk")
+centered = false
+
+[node name="CanvasScene" parent="." instance=ExtResource("1_1y0fx")]
+
+[node name="KitchenMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8ugbg")
+volume_db = -10.0
+
+[node name="SoundNode" type="Node" parent="."]
+
+[node name="EggCrack" type="AudioStreamPlayer" parent="SoundNode"]
+stream = ExtResource("5_k8tir")
+
+[node name="EggPop" type="AudioStreamPlayer" parent="SoundNode"]
+stream = ExtResource("6_35xuo")
+
+[node name="EggCharge" type="AudioStreamPlayer" parent="SoundNode"]
+stream = ExtResource("7_n5ye8")
+volume_db = -5.0
+parameters/looping = true
+
+[node name="EggBounce" type="AudioStreamPlayer" parent="SoundNode"]
+stream = ExtResource("8_n478g")
+volume_db = -5.0
+
+[node name="FireChargeSound" type="AudioStreamPlayer" parent="SoundNode"]
+stream = ExtResource("10_553al")
+volume_db = -5.0
+
+[node name="SpeedBoost" type="AudioStreamPlayer" parent="SoundNode"]
+stream = ExtResource("10_vaysc")
+volume_db = -5.0
+
+[node name="EggArrow" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(-100, 182)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_7i32j")
+offset = Vector2(0, -60)
+script = ExtResource("9_68auh")
+
+[node name="EggPhysicsBody" type="RigidBody2D" parent="." groups=["PLAYER_PHYSICS"]]
+position = Vector2(285, 150)
+mass = 0.05
+physics_material_override = SubResource("PhysicsMaterial_svnrw")
+gravity_scale = 0.5
+can_sleep = false
+script = ExtResource("3_v8oti")
+
+[node name="EggPhysicsHitbox" type="CollisionShape2D" parent="EggPhysicsBody"]
+shape = SubResource("CircleShape2D_ca1vh")
+
+[node name="EggAnimated" type="AnimatedSprite2D" parent="EggPhysicsBody"]
+z_index = 7
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_77fsr")
+script = ExtResource("2_vbgqm")
+
+[node name="EggCamera" type="Camera2D" parent="EggPhysicsBody/EggAnimated" groups=["CAMERA"]]
+limit_left = 0
+limit_top = 0
+limit_right = 2500
+limit_bottom = 1200
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="FireChargeAnim" type="AnimatedSprite2D" parent="EggPhysicsBody/EggAnimated"]
+visible = false
+z_index = -1
+position = Vector2(0, -20)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_e6ati")
+
+[node name="GoalFlag" parent="." groups=["GOAL_FLAG"] instance=ExtResource("16_ou4xa")]
+position = Vector2(2200, 400)
+
+[node name="AimCircle" type="AnimatedSprite2D" parent="."]
+position = Vector2(-50, 100)
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_4o1e7")
+
+[node name="Hitboxes" type="StaticBody2D" parent="."]
+
+[node name="TableBox" type="CollisionPolygon2D" parent="Hitboxes"]
+z_index = 1
+position = Vector2(1000, 1150)
+polygon = PackedVector2Array(-359, -253, -349, -258, 346, -259, 361, -252, 327, 259, 307, 258, 301, 250, 310, -181, 289, 183, 271, 185, 269, -180, -271, -179, -263, 184, -285, 187, -310, -178, -299, 251, -303, 262, -324, 262)
+
+[node name="TableSprite" type="Sprite2D" parent="Hitboxes/TableBox"]
+z_index = -1
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("17_t26rh")
+
+[node name="FridgeBox" type="CollisionShape2D" parent="Hitboxes"]
+position = Vector2(280, 800)
+shape = SubResource("RectangleShape2D_f8ud8")
+
+[node name="FridgeSprite" type="Sprite2D" parent="Hitboxes/FridgeBox" groups=["basicSurface"]]
+z_index = -5
+position = Vector2(-270, -585)
+texture = ExtResource("15_vjrkt")
+centered = false
+
+[node name="FridgeBox2" type="CollisionShape2D" parent="Hitboxes"]
+position = Vector2(1730, 800)
+shape = SubResource("RectangleShape2D_f8ud8")
+
+[node name="FridgeSprite" type="Sprite2D" parent="Hitboxes/FridgeBox2" groups=["basicSurface"]]
+z_index = -5
+position = Vector2(-270, -585)
+texture = ExtResource("15_vjrkt")
+centered = false
+
+[node name="ForkBox" type="CollisionPolygon2D" parent="Hitboxes"]
+position = Vector2(750, 625)
+polygon = PackedVector2Array(-33, -172, -28, -112, -15, -173, -1, -107, 12, -174, 26, -107, 32, -172, 42, -152, 50, -115, 48, -71, 41, -50, 36, -46, 5, -37, 8, 171, -7, 173, -3, -39, -37, -44, -48, -66, -50, -117, -45, -143)
+script = ExtResource("19_vjkq4")
+
+[node name="Fork" type="Sprite2D" parent="Hitboxes/ForkBox"]
+z_index = -1
+material = SubResource("ShaderMaterial_ncuws")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_kh452")
+
+[node name="ForkBox2" type="CollisionPolygon2D" parent="Hitboxes"]
+position = Vector2(1250, 625)
+polygon = PackedVector2Array(-33, -172, -28, -112, -15, -173, -1, -107, 12, -174, 26, -107, 32, -172, 42, -152, 50, -115, 48, -71, 41, -50, 36, -46, 5, -37, 8, 171, -7, 173, -3, -39, -37, -44, -48, -66, -50, -117, -45, -143)
+script = ExtResource("19_vjkq4")
+
+[node name="Fork" type="Sprite2D" parent="Hitboxes/ForkBox2"]
+z_index = -1
+material = SubResource("ShaderMaterial_ncuws")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_kh452")
+
+[node name="CupboardBox" type="CollisionShape2D" parent="Hitboxes"]
+position = Vector2(1000, 200)
+shape = SubResource("RectangleShape2D_31prq")
+
+[node name="CupboardSprite" type="Sprite2D" parent="Hitboxes/CupboardBox"]
+z_index = -1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("21_grjow")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Hitboxes/CupboardBox"]
+position = Vector2(200, 200)
+color = Color(0.0687983, 0.0687983, 0.0687983, 1)
+max_distance = 100.0
+
+[node name="SpeedBoost" parent="." instance=ExtResource("25_5fhdx")]
+position = Vector2(595, 1000)
+rotation = -1.5708
+
+[node name="SpeedBoost2" parent="." instance=ExtResource("25_5fhdx")]
+position = Vector2(1420, 1000)
+rotation = -1.5708
+
+[node name="CornContainer" type="Node" parent="."]
+
+[node name="Corn1" parent="CornContainer" instance=ExtResource("21_2p4nf")]
+position = Vector2(1000, 655)
+
+[node name="Corn2" parent="CornContainer" instance=ExtResource("21_2p4nf")]
+position = Vector2(1000, 561)
+
+[node name="Corn3" parent="CornContainer" instance=ExtResource("21_2p4nf")]
+position = Vector2(1000, 466)
+
+[node name="Corn4" parent="CornContainer" instance=ExtResource("21_2p4nf")]
+position = Vector2(1369, 337)
+
+[node name="Corn5" parent="CornContainer" instance=ExtResource("21_2p4nf")]
+position = Vector2(1384, 236)
+
+[node name="Corn6" parent="CornContainer" instance=ExtResource("21_2p4nf")]
+position = Vector2(1440, 150)
+
+[node name="Corn7" parent="CornContainer" instance=ExtResource("21_2p4nf")]
+position = Vector2(1533, 104)
+
+[node name="Corn8" parent="CornContainer" instance=ExtResource("21_2p4nf")]
+position = Vector2(1636, 113)
+
+[node name="Corn9" parent="CornContainer" instance=ExtResource("21_2p4nf")]
+position = Vector2(1731, 138)
+
+[node name="Corn10" parent="CornContainer" instance=ExtResource("21_2p4nf")]
+position = Vector2(1823, 180)
+
+[connection signal="child_exiting_tree" from="CornContainer" to="CanvasScene" method="_on_corn_container_child_exiting_tree"]
